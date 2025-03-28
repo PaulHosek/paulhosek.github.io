@@ -1,9 +1,6 @@
 ---
-title: blog_post1
-date: 2025-03-28 15:56:06
-tags:
+title: My Blog Post
+date: 2025-03-28
+tags: [hexo, blog]
+categories: [Development]
 ---
-
-
-{% asset_img 1094446.jpg logo %}
-![](./blog-post1/1094446.jpg)
