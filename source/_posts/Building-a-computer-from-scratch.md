@@ -61,8 +61,8 @@ We can write this “logic” down in a so-called truth table:
 | **Output** | **0** | **0** | **0** | **1** |
 
 Similarly, for the Not-gate:
-| --- | --- | --- | 
 | | | | 
+| --- | --- | --- | 
 | Input 1 | 0 | 1 |
 | Output | 1 | 0 |
 
@@ -423,7 +423,7 @@ We can combine both previous ideas into one. We start with One’s complement, b
 
 In this system, we notice two things. First, to get more negative numbers, we need to count down from 1111. This leads to the largest negative number being 1000. Secondly, at the cost of having only one zero, we now have one more negative number than positive numbers (i.e., the 8). This system of describing negative numbers is called **two’s complement**. The circuit that implements this inverts all bits of the input individually using NOT-gates and then uses the adder circuit from before to add +1. This “negator” circuit for 8 bytes will be represented as such:
 
-<p align="center"> {% asset_image image_30.png %}
+<p align="center"> {% asset_image negate_v2.png %}
 
 ## Goal 11: Tri-state buffer
 
@@ -611,23 +611,23 @@ I obviously left out two states, but bare with me for now. We will find some mor
 
 I have changed to a bit of a different representation to make it a bit less messy for us. Blue connections will be used to refer to BYTE transfer. A byte is 8 bits. We can imagine such a blue wire as just 8 different wires next to each other. Black wires are single bit wires and green wires are single bit wires with the 1 state. For example, the 8-bit version of the tri-state buffer we discussed before will look like this:
 
+<p align="center"> {% asset_image image_33.png %}
+
+Now to our starting point. We expect that there will be some long string of 0s and 1s that encode the instruction. The instruction address takes a number as input that denotes the index of the byte that we have to read. The output just outputs the bytes. Secondly, we also have separate data input and output streams. These contain the numbers that we perform the operations on. We assume some hidden process here that will provide us with the right numbers at the right time. It could for example be that, much like the program instruction input, the data input just has a long list of numbers that is defined before and is then read into the program. Not very dynamic but good enough for now.
+
 <p align="center"> {% asset_image image_57.png %}
-
-This will be our starting point. We expect that there will be some long string of 0s and 1s that encode the instruction. The instruction address takes a number as input that denotes the index of the byte that we have to read. The output just outputs the bytes. Secondly, we also have separate data input and output streams. These contain the numbers that we perform the operations on. We assume some hidden process here that will provide us with the right numbers at the right time. It could for example be that, much like the program instruction input, the data input just has a long list of numbers that is defined before and is then read into the program. Not very dynamic but good enough for now.
-
-<p align="center"> {% asset_image image_58.png %}
 
 ### Goal 15.1 Copying values
 
 I will first decode the byte into its separate bits.
 
-<p align="center"> {% asset_image image_59.png %}
+<p align="center"> {% asset_image image_58.png %}
 
 We want to be able to copy between two registers and an input stream and output stream. For this, we obviously need to have some registers, so I will add four to our architecture. Note, that this can be as many as we want.
 
 We will need to define a set of instructions for the copy operation between registers and input and output. Let’s use this convention: Out of the 6 left-most bits in the instruction, we use the three most significant ones to determine the location to copy from and the three least significant ones to determine the location to copy to. 
 
-<p align="center"> {% asset_image image_60.png %}
+<p align="center"> {% asset_image image_94.png %}
 
 | Decimal index |  | From | To |
 | --- | --- | --- | --- |
@@ -645,7 +645,7 @@ In a second example, imagine we want to copy from register 2 to register 1. Agai
 
 Let’s try to implement this logic. First, we need to decode all three sets of bits: the two bits indicating the action to be taken, the “copy from” and the “copy to”.
 
-<p align="center"> {% asset_image image_61.png %}
+<p align="center"> {% asset_image image_60.png %}
 
 Let’s start with our second example. I would like to copy a value from register 2 to register 1: 01 010 001. For this, I will need to do three things:
 
@@ -653,11 +653,11 @@ Let’s start with our second example. I would like to copy a value from registe
 2. Enable both decoders
 3. Set the “load” and “read” fields of the respective registers.
 
-<p align="center"> {% asset_image image_62.png %}
+<p align="center"> {% asset_image image_61.png %}
 
 Doing this for registers, as well as the input and output, completes the copy implementation. 
 
-<p align="center"> {% asset_image image_63.png %}
+<p align="center"> {% asset_image image_62.png %}
 
 Let’s move on to the second part of the logic we wanted to implement: Computation. 
 
@@ -665,7 +665,7 @@ Let’s move on to the second part of the logic we wanted to implement: Computat
 
 It would be useful to integrate all the operations that we have learned to implement so far into a single block. We could then pass the data as well as a selection input to the block and let it spit out the result. This block could be split up into two parts: One that does all the logic operations (or, nand, nor, and) and one that does all arithmetic (addition) operations. This time, let’s start with the abstract representation. There should be two inputs and one output. Additionally, there should be one input that decides the operation we would like to have:
 
-<p align="center"> {% asset_image image_64.png %}
+<p align="center"> {% asset_image image_63.png %}
 
 The “opcode” field decides which operation we would like to do. Let’s associate some numbers to the operations:
 
@@ -694,21 +694,21 @@ $01000110 = SUBTRACT$
 
 For this exercise, I will be using the byte variants of the basic logic gates to make the illustration a bit clearer. These can simply be understood as doing the operation of the gate for each input bit. Following De Morgan’s laws from earlier, we know that the operations we want are all related and can be encoded in terms of one of the gates in the diagram combined with inversion of input or output.  We can use the multiplexer (MUX) from before to decide which combination should take place: Should the input be inverted? Should the output be inverted? We are left with the circuit for the “logic” part of the ALU.
 
-<p align="center"> {% asset_image image_65.png %}
+<p align="center"> {% asset_image image_64.png %}
 
 Now we need to implement addition and subtraction. We know that subtraction is just the same as addition of a number with a negative number. We can use the negator we discovered earlier to invert the second number and pass that to our 8-bit adder.
 
-<p align="center"> {% asset_image image_66.png %}
+<p align="center"> {% asset_image image_65.png %}
 
 You may notice that I added an extra AND- and OR-gate to select the input of the MUX. Naturally, we could have used the decoder we built earlier instead of decoding the state with those two gates. 
 
 Next, we can wire up the ALU to do computations between fixed registers. Here we stand before the decision as to which registers to do the computation with. We could add additional logic to our instruction code to determine the registers, but do not have enough bits. I chose to just fix the registers that we can do the computations with. This effectively forces the programmer to move the to-be-computed data into the correct registers before the computation. We could do better, but this does not limit the amount of possible computations in any way, but computation may take more operations. I determine that computations must happen with Input 1 coming from register 1, input 2 from register 2 and output is loaded into register 3. Lastly, let’s add an 8-bit tri-state buffer to enable and disable the module.
 
-<p align="center"> {% asset_image image_67.png %}
+<p align="center"> {% asset_image image_66.png %}
 
 Let’s add the circuit to our computer. For this, we need to make sure to enable when in use and also add an extra OR-gate for the load operation on Register 3, since now there are multiple ways of loading a value into this register. 
 
-<p align="center"> {% asset_image image_68.png %}
+<p align="center"> {% asset_image image_67.png %}
 
 ## Goal 16: Program Counter
 
@@ -716,11 +716,11 @@ When we set out to build this computer, we decided that the input should come as
 
 For a counter, we will need to store data. Let’s start with a known building block from when we built our 1-bit register in chapter 14: the SR-latch. 
 
-<p align="center"> {% asset_image image_69.png %}
+<p align="center"> {% asset_image image_46.png %}
 
 Previously, we then extended to this intermediate representation with an “enable” input. 
 
-<p align="center"> {% asset_image image_70.png %}
+<p align="center"> {% asset_image image_96.png %}
 
 with the associated truth table:
 
@@ -732,7 +732,7 @@ with the associated truth table:
 
 We went on to replace the “reset” button with the inversion of the data input to form the D-latch. This time, we won’t do that and introduce something else instead. The problem with the S-R-Latch was that we could hit an invalid state when all three inputs are one. In this case, we are telling the latch to latch high (1) and latch low (reset, 0) at the same time. This leads to race between both inputs to determine the output - not ideal to say the least. We can think about what this state should encode from looking at the above truth table. We have a way to do nothing, set output 1, set output 2, but no way to do the opposite of doing nothing: doing whatever action possible that would change the state of the system, a toggle between states. We can implement this by chaining another AND-gate behind the existing AND-gates and feed back the output of the opposing side. As it turns out, this preserves the logic of the SR-latch but adds the wanted behavior for the 11 state:
 
-<p align="center"> {% asset_image image_71.png %}
+<p align="center"> {% asset_image image_69.png %}
 
 Unfortunately, if we leave the enable input there out, the latch will jump back and forth between the two states. This is not good. We will need an element that gives us a strong but also very brief charge increase from state 0 to 1 back to 0. Turns out this is where the clock of the computer comes in. The clock will do something very simple, it will continuously flip the switch for us.
 
@@ -740,19 +740,19 @@ Unfortunately, if we leave the enable input there out, the latch will jump back 
 
 Over time, the clock we just thought of will be flipping between the two states 0 and 1. 
 
-<p align="center"> {% asset_image image_72.png %}
+<p align="center"> {% asset_image image_70.png %}
 
 I would like to add a bit more nuance here. Technically, the states 0 and 1 do not exist in the way I drew them out but represent a difference in voltage. The clock continuously flips between high and low voltage states, creating the pattern we observe above. The associated symbol is:
 
-<p align="center"> {% asset_image image_73.png %}
+<p align="center"> {% asset_image image_71.png %}
 
 You may now wonder how this is helpful at all to us, since the phase for each state is still long. For this, we will add a circuit behind the clock that looks like this:
 
-<p align="center"> {% asset_image image_74.png %}
+<p align="center"> {% asset_image image_72.png %}
 
 We know that each component is built up of transistors. These can only *almost* instantaneously pass on the signal, but there is a small delay. In this case, it takes the signal longer to pass through the NOT-gate than through the unobstructed wire. When the clock switches from low to high, for a very brief moment, both inputs to the AND-gate are high and the AND-gate forwards this. We have built a method to detect low-to-high cycle changes, a **rising edge detector**. We will use the combination of clock and rising edge detector to pass the signal through our computer. The output of this combination gives us the following waveform.
 
-<p align="center"> {% asset_image image_75.png %}
+<p align="center"> {% asset_image image_73.png %}
 
 A short note on clock speed. Before this chapter, we have always assumed that the signal passes instantly. However, as we know now, each component has a cost of time associated with them. The computer that we are building has components that are very complex and need the signal to pass through others first. Take the Ripple-carry-adder for example. There, we can only start adding the next larger bit when the previous position is finished. In practice, this means that we would need to have a slower clock speed for our computer to ensure that all computation paths can be passed in a single cycle. This is particularly bad if the operation we want does not take very long at all, but since the clock is stepping ahead at a constant speed, we have to wait. Which raises an interesting challenge where we try to find ways to avoid waiting for previous components and move onto the next computation sooner, being able to increase the clock speed of the computer and its computation speed. I also find it interesting to think about the alternative, where we may not try to do a full computation in one cycle. Instead, we could try to break it up into smaller operations such that a single operation may take multiple cycles. This would have no impact on larger operations in terms of time, but since we know that the longest an operation could possibly need in the computer is much shorter, we are able to increase the clock speed. Lastly, if the computer has some means of predicting how long an operation may take, it would be able to adjust the clock speed dynamically, while still guaranteeing correctness of output. In our computer, we will put all of that aside and just use a slow enough clock speed.
 
@@ -760,7 +760,7 @@ A short note on clock speed. Before this chapter, we have always assumed that th
 
 We can now complete our circuit called the J-K-flip flop from before:
 
-<p align="center"> {% asset_image image_76.png %}
+<p align="center"> {% asset_image image_74.png %}
 
 Which has the associated truth table:
 
@@ -772,11 +772,11 @@ Which has the associated truth table:
 
 We can wrap this circuit into modules again as such,
 
-<p align="center"> {% asset_image image_77.png %}
+<p align="center"> {% asset_image image_75.png %}
 
 and combine into a counter. In this counter, we use the inverted output of the JK-flip flop as the clock signal for the next flip-flop. Going from left to right, each clock signal will toggle the first JK-flip flop between outputs 0 and 1. The inverted output will obviously be the other binary digit. This makes it so that the next JK-flip flop will flip only when the inverted input is 1. This happens every other pulse. A falling edge/ transition from 1 to 0 will not trigger a toggle of the next flip-flop. The third flip flop will be dependent on the one before, etc. This leads the nth JK-flip flop to be toggled after $1/2^{(n-1)}$ flips of the first flip-flop. Effectively counting up. Also note how the output of this counter has the most significant bit on the farthest to the right position. 
 
-<p align="center"> {% asset_image image_78.png %}
+<p align="center"> {% asset_image image_76.png %}
 
 Similar to our ripple-carry adder design, the computation speed of this ripple counter increases linearly with the number of digits in the counter. There are fun ways to improve this, but let’s not get too sidetracked. Instead, we should think about what we do if we want to do more than just move to the next instruction.
 
@@ -795,7 +795,7 @@ We know two things will be needed to implement this: First, a block that decides
 Seeing we are currently working on the program counter anyway, let’s avoid shifting focus and start with the second problem. For this we can try to add a second control path to our counter. 
 For example, to set a flip-flop to 1, feed `J = 1` and `K = 0` when Load is active. Similarly, to set it to 0, feed `J = 0` and `K = 1`. Since we will be sharing the inputs, we need to make sure to not short circuit the whole thing. I have created a two bit version of the design we would need below.
 
-<p align="center"> {% asset_image image_79.png %}
+<p align="center"> {% asset_image image_77.png %}
 
 But since I am the one writing this text, I can do whatever I want - and I want something a bit simpler. Let’s take a step back and evaluate what we need. 
 
@@ -807,19 +807,19 @@ Now, painfully obvious, we could have accommodated the second two requirements w
 
 Counter V2:
 
-<p align="center"> {% asset_image image_80.png %}
+<p align="center"> {% asset_image image_78.png %}
 
 Much simpler to read for me. Adding the enable logic is almost trivial now compared to designing an entirely new circuit, because there is only a single input loop that we need to protect with tri-state buffers. 
 
-<p align="center"> {% asset_image image_81.png %}
+<p align="center"> {% asset_image image_79.png %}
 
 I am very happy about this! Let’s make it a module and wire it up to the rest of the computer:
 
-<p align="center"> {% asset_image image_82.png %}
+<p align="center"> {% asset_image image_80.png %}
 
 Similar to when we implemented calculations with the ALU, I made the decision that the input override value can only come from a specific register. This time, I chose Register 0. Notably, we are still missing the block that makes the override dependent on the data. In the current setup, the condition instruction would always override the counter value with the value in register 0. Let’s have a look at that next.
 
-<p align="center"> {% asset_image image_83.png %}
+<p align="center"> {% asset_image image_81.png %}
 
 ## Goal 17: Condition Engine
 
@@ -868,29 +868,29 @@ To test if a value is strictly larger zero, we turn on all the tests to evaluate
 
 Finally, I would like to note that the second half of the circuit could be replaced with a full adder and only taking the sum output. My initial design did not include adders at all, but I will save you from it this time.
 
-<p align="center"> {% asset_image image_84.png %}
+<p align="center"> {% asset_image image_82.png %}
 
 Plus a compact version again for our computer 
 
-<p align="center"> {% asset_image image_85.png %}
+<p align="center"> {% asset_image image_83.png %}
 
 ### 17.1 Integrating the condition engine
 
 Let’s add the condition engine to our computer to allow for conditional code execution! As we previously discussed, we take the instruction as a condition, the value from register 3. If we are then in condition mode AND the condition is satisfied, we forward the value to the program counter override.
 
-<p align="center"> {% asset_image image_86.png %}
+<p align="center"> {% asset_image image_17_1_v2.png %}
 
 ## Goal 18: RAM
 
 We still have a possible instruction left for which I have two ideas.
 
- Idea nr. 1 is that we introduce a read operation from a specific memory location in RAM. That is, we could just tell the computer that we need to read from a specific address in RAM. RAM would then just be a large block of memory with an index that we can provide to get a specific address. We could then also provide where to load this into. 
+Idea nr. 1 is that we introduce a read operation from a specific memory location in RAM. That is, we could just tell the computer that we need to read from a specific address in RAM. RAM would then just be a large block of memory with an index that we can provide to get a specific address. We could then also provide where to load this into. 
 
-<p align="center"> {% asset_image image_87.png %}
+<p align="center"> {% asset_image image_85.png %}
 
 Which we could hook up like this, not forgetting to turn on the decoder for reading into the correct register:
 
-<p align="center"> {% asset_image image_88.png %}
+<p align="center"> {% asset_image image_86.png %}
 
 With possible opcodes structured like this:
 | | |
@@ -918,7 +918,7 @@ Since the opcode happens to be 00, the byte is preserved in the number it repres
 
 For this, we need to pass the byte value directly to the bus and add an OR-gate to the load operation of a fixed register (e.g., Register 0).
 
-<p align="center"> {% asset_image image_89.png %}
+<p align="center"> {% asset_image image_19_1_v2.png %}
 
 ## Goal 20: CPU
 
@@ -928,14 +928,17 @@ We have finished the computer! We can now compute whatever we want, copy values,
 
 - Inside the Machine: An Illustrated Introduction to Microprocessors and Computer Architecture
 - [https://riscv.org/](https://riscv.org/)
+- [https://logic.ly/](https://logic.ly/)
+- [https://miro.com/](https://miro.com/)
+- [https://turingcomplete.game/](https://turingcomplete.game/)
 - [https://www.youtube.com/watch?v=wRIys1pzCMA](https://www.youtube.com/watch?v=wRIys1pzCMA)
 - [https://www.youtube.com/watch?v=PVNAPWUxZ0g](https://www.youtube.com/watch?v=PVNAPWUxZ0g)
 - [https://www.youtube.com/watch?v=PVNAPWUxZ0g](https://www.youtube.com/watch?v=PVNAPWUxZ0g)
 - [https://www.youtube.com/watch?v=F1OC5e7Tn_o](https://www.youtube.com/watch?v=F1OC5e7Tn_o)
-- [https://turingcomplete.game/](https://turingcomplete.game/)
 - [https://www.youtube.com/watch?v=CRVpoTZ8mn4](https://www.youtube.com/watch?v=CRVpoTZ8mn4)
 - [https://www.youtube.com/watch?v=sJXTo3EZoxM](https://www.youtube.com/watch?v=sJXTo3EZoxM)
 - [https://www.youtube.com/@BitMerge](https://www.youtube.com/@BitMerge)
+
 
 
 
