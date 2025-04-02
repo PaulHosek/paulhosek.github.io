@@ -3,11 +3,11 @@ version: 5.1.0
 # Icarus theme variant, can be "default" or "cyberpunk"
 variant: default
 # Path or URL to the website's logo
-logo: /img/paul_hosek_profilfoto__rect.jpg
+logo: /img/logo_2_gold.png  # the one on the website, not the tab
 # Page metadata configurations
 head:
     # URL or path to the website's icon
-    favicon: /img/AMLAB_white.png
+    favicon: /img/AMLAB_white.png # MYTODO this works, some hexo one does too, nothing else
     # Web application manifests configuration
     # https://developer.mozilla.org/en-US/docs/Web/Manifest
     manifest:
@@ -98,7 +98,7 @@ head:
     meta:
         # Meta tag specified in <attribute>=<value> style
         # E.g., name=theme-color;content=#123456 => <meta name="theme-color" content="#123456">
-        - ''
+        - name=theme-color;content=#123456  # Example meta tag
     # URL or path to the website's RSS atom.xml
     rss: 
 # Page top navigation bar configurations
@@ -118,7 +118,7 @@ navbar:
 # Page footer configurations
 footer:
     # Copyright text
-    copyright: © 2019
+    copyright: © 2019 Paul Hosek
     # Links to be shown on the right of the footer section
     links:
         Creative Commons:
@@ -235,18 +235,18 @@ widgets:
         # Author's current location
         location: Amsterdam, Netherlands
         # URL or path to the avatar image
-        avatar: 
+        avatar: /img/paul_hosek_profilfoto_rect.jpg
         # Whether show the rounded avatar image
-        avatar_rounded: false
+        avatar_rounded: true
         # Email address for the Gravatar
         gravatar: 
         # URL or path for the follow button
-        follow_link: https://github.com/ppoffice
+        follow_link: https://www.linkedin.com/in/paul-hosek-pja/
         # Links to be shown on the bottom of the profile widget
         social_links:
             Github:
                 icon: fab fa-github
-                url: https://github.com/ppoffice
+                url: https://github.com/PaulHosek 
             # Facebook:
             #     icon: none
             #     url: https://facebook.com
@@ -258,14 +258,14 @@ widgets:
             #     url: https://dribbble.com
             LinkedIn:
                 icon: fab fa-linkedin-in
-                url: https://linkedin.com
+                url: https://www.linkedin.com/in/paul-hosek-pja/ 
             # RSS:
             #     icon: fas fa-rss
             #     url: /
     # Table of contents widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: toc
         # Whether to show the index of each heading
         index: true
@@ -276,7 +276,7 @@ widgets:
     # Recommendation links widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: none
         type: links
         # Names and URLs of the sites
         links:
@@ -311,7 +311,7 @@ widgets:
     # Google FeedBurner email subscription widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: none
         type: subscribe_email
         # Hint text under the email input
         description: 
@@ -320,7 +320,7 @@ widgets:
     # Google AdSense unit configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: none
         type: adsense
         # AdSense client ID
         client_id: ''
@@ -329,7 +329,7 @@ widgets:
     # Follow.it email subscription widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: none
         type: followit
         # Hint text under the email input
         description: 
