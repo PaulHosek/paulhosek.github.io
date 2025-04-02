@@ -1,5 +1,5 @@
 ---
-title: Computer Architecture from Scrath 
+title: Building an 8-Bit computer from scratch
 date: 2025-03-28
 tags: [hexo, blog]
 categories: [Development]
@@ -8,9 +8,9 @@ mathjax: true
 
 <!-- # Computer Architecture -->
 
-Today, we will try to build as much of a computer as we can, starting with some elementary building blocks. 
+Today, we will try to build as much of a computer as we can, starting with some elementary building blocks.
 
-When I assembled the parts of a computer for the first time, it felt like I was an expert on computers. I was telling all my school friends about CPUs and GPUs and RAM without knowing much beyond single sentences such as “The CPU is like the brain of the computer.”, or “RAM stands for random access memory”. Random access, that seemed useless why would anyone want that? So today, we will shed some more light on the magic box that I am typing this on.
+When I assembled the parts of a computer for the first time, it felt like I was an expert on computers. I was telling all my school friends about CPUs and GPUs and RAM without knowing much beyond single sentences such as “The CPU is like the brain of the computer.”, or “RAM stands for random access memory”. Random access, that seemed useless why would anyone want that? So today, we will shed some more light on the magic box that I am typing this on. 
 
 ### Where to start?
 
@@ -20,6 +20,8 @@ So let’s start with some assumptions:
 
 1. Electricity works like water in my head. If I turn the tap on, the water runs. If I turn it off, it does not run. For our task, this should be good enough, but please know that there is more to it.
 2. We also assume a few fundamental things already exist. Most notably, we will skip over the circuit logic needed to implement the NOT- and AND-Gates.
+
+Occasionally, I felt that I needed to brush over and ommit details to aid the consistency and length of this post. If you are not satisfied after reading - great! How about you start with one of the sources I linked at the end? If you find something is plain incorrect (which is very possible), send me a message on Linkedin!
 
 ### Goal 1: Invert inputs.
 
@@ -832,7 +834,7 @@ When the instruction code is 11, we decided that conditional branching should ha
 | 010 | Input < 0 |
 | 011 | Input ≤ 0 |
 | 100 | Output is 1 |
-| 101 | Input  **≠ 0** |
+| 101 | Input ≠ 0 |
 | 110 | Input ≥ 0 |
 | 111 | Input > 0 |
 
