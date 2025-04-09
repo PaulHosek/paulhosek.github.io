@@ -237,7 +237,8 @@ widgets:
         # Author's current location
         location: Amsterdam, Netherlands
         # URL or path to the avatar image
-        avatar: /img/paul_hosek_profilfoto_rect.jpg
+        # avatar: /img/paul_hosek_profilfoto_rect.jpg
+        avatar: <img src="/img/paul_hosek_profilfoto_rect.jpg" alt="Paul Hosek" class="avatar" style="width: 100%; height: auto; border-radius: 50%;">
         
         # Whether show the rounded avatar image
         avatar_rounded: true

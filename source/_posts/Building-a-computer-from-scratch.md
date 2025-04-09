@@ -21,7 +21,7 @@ So let’s start with some assumptions:
 1. Electricity works like water in my head. If I turn the tap on, the water runs. If I turn it off, it does not run. For our task, this should be good enough, but please know that there is more to it.
 2. We also assume a few fundamental things already exist. Most notably, we will skip over the circuit logic needed to implement the NOT- and AND-Gates.
 
-Occasionally, I felt that I needed to brush over and ommit details to aid the consistency and length of this post. If you are not satisfied after reading - great! How about you start with one of the sources I linked at the end? If you find something is plain incorrect (which is very possible), send me a message on Linkedin!
+Occasionally, I felt that I needed to brush over and ommit details to aid the consistency and length of this post. If you are not satisfied after reading - great! How about you start with one of the sources I linked at the end? If you find something is that is incorrect (which is very possible), send me a message on Linkedin!
 
 ### Goal 1: Invert inputs.
 
