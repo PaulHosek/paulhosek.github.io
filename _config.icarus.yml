@@ -3,11 +3,11 @@ version: 5.1.0
 # Icarus theme variant, can be "default" or "cyberpunk"
 variant: default
 # Path or URL to the website's logo # the one on the website, not the tab
-logo: /img/logo_2_gold.png 
+logo: '/img/logo_2_gold.png'
 # Page metadata configurations
 head:
     # URL or path to the website's icon
-    favicon: /img/logo_2_gold.png
+    favicon: '/img/logo_2_gold.png'
     # Web application manifests configuration
     # https://developer.mozilla.org/en-US/docs/Web/Manifest
     manifest:

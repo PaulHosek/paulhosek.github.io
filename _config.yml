@@ -3,11 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Paul Hosek's Blog
+# title: Paul Hosek's Blog
+title: ''
 subtitle: ''
 description: ''
 keywords:
-author: Paul Hosek
+author: 'Paul Hosek'
 language: en
 timezone: ''
 
