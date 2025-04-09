@@ -97,8 +97,8 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # plugins: hexo-math
-# theme: icarus
-remote-theme: ppoffice/hexo-theme-icarus
+theme: icarus
+# remote-theme: ppoffice/hexo-theme-icarus
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
