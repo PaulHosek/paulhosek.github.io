@@ -7,8 +7,7 @@ logo: /img/logo_2_gold.png  # the one on the website, not the tab
 # Page metadata configurations
 head:
     # URL or path to the website's icon
-    # favicon: /img/AMLAB_white.png # MYTODO this works, some hexo one does too, nothing else
-    favicon: /img/logo_2_gold.png # MYTODO this works, some hexo one does too, nothing else
+    favicon: /img/logo_2_gold.png
     # Web application manifests configuration
     # https://developer.mozilla.org/en-US/docs/Web/Manifest
     manifest:
@@ -119,7 +118,7 @@ navbar:
 # Page footer configurations
 footer:
     # Copyright text
-    copyright: © 2019 Paul Hosek
+    copyright: © 2025 Paul Hosek
     # Links to be shown on the right of the footer section
     links:
         Creative Commons:
