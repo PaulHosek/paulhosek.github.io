@@ -60,13 +60,13 @@ We can write this “logic” down in a so-called truth table:
 | --- | --- | --- | --- | --- |
 | Input 1 | 1 | 0 | 0 | 1 |
 | Input 2 | 0 | 1 | 0 | 1 |
-| **Output** | **0** | **0** | **0** | **1** |
+| **Output** | 0 | 0 | 0 | 1 |
 
 Similarly, for the Not-gate:
 | | | | 
 | --- | --- | --- | 
 | Input 1 | 0 | 1 |
-| Output | 1 | 0 |
+| **Output** | 1 | 0 |
 
 ## Goal 3: The NAND-Gate
 
@@ -208,7 +208,7 @@ What we built makes intuitive sense to me, but it may not be the shortest repres
 | AND-gate | 1 | 3 |
 | OR-gate | 1 | 2 |
 | NAND-gate | 1 | 0 |
-| **TOTAL** | **3** | **5** |
+| **TOTAL** | 3 | 5 |
 
 We can do better by just using 4 NAND or 5 NOR gates. 
 
