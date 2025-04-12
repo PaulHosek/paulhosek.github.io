@@ -109,8 +109,8 @@ navbar:
         Archives: /archives
         Categories: /categories
         Tags: /tags
-        # About: /about
-        About: https://paulhosek.github.io/portfolio.github.io/
+        About: /about
+        # About: https://paulhosek.github.io/portfolio.github.io/
         # Add more menu items here
     # Links to be shown on the right of the navigation bar
     links:
@@ -399,7 +399,7 @@ plugins:
     katex: false
     # Enable the MathJax math typesetting support
     # https://www.mathjax.org/
-    mathjax: false
+    mathjax: true
     # Enable the Outdated Browser plugin
     # http://outdatedbrowser.com/
     outdated_browser: false
