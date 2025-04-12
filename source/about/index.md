@@ -22,7 +22,7 @@ $\sigma B_t$ is the noise caused by factors outside of my control.
 $\sum_{i=1}^{N_t} Y_i$ compound Poisson jumps, moddeling rare but impactful events.
 
 
-Of course, I my efforts are not fully deterministic and we could add a lot more coefficients (volatility, frequency of success-influencing events etc). However, this is a model that is useful to me - which is what modelling is all about: usefulness. It keeps me motivated and abstracts the success from the effort, making me optimise for my drift coefficient, rather than an outcome outside my control. Which is probabily the most techical description of a growth-mindset I could have given.
+Of course, I my efforts are not fully deterministic and we could add a lot more coefficients (volatility, frequency of success-influencing events etc). However, this is a model that is useful to me - which is what modelling is all about: usefulness. It keeps me motivated and abstracts the success from the effort, making me optimise for a high drift coefficient, rather than an outcome outside my control. Which is probabily the most techical description of a growth-mindset I could have given.
 
 ## Why
 

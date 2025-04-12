@@ -1,8 +1,8 @@
 ---
 title: Building an 8-Bit computer from scratch
 date: 2025-03-28
-tags: [Non-Technical, Blog, Computer Architecture, Simple]
-categories: [Fundamecawntals]
+tags: [Non-Technical, Blog, Computer Architecture]
+categories: [Fundamentals]
 mathjax: true
 ---
 
