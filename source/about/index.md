@@ -13,14 +13,14 @@ During my master’s degree, I conducted research in compression and pattern rec
 
 I am motivated by learning new things, especially if they seem much too complex initially. In my head, I think about my personal influence on my success as a Lévy process. I can only influence the work I put in and additional noise factors influence my success probability. I cannot force success on a particular event, but I can influence the probability of success by working on myself - and there is always more to learn. Success on events is a Poisson-process: I can only increase the average occurrence rate of success given an event. A bit like this,
 
-$P(success)_t = a t + \sigma B_t + \sum_{i=1}^{N_t} Y_i$
+$$X_t = a t + \sigma B_t + \sum_{i=1}^{N_t} Y_it$$
 
 where
-<!-- 
-$$a t$$ is the drift caused by working on myself.$$
-$$\sigma B_t$$ is the noise caused by factors outside of my control.$$
-$$\sum_{i=1}^{N_t} Y_i$$ compound Poisson jumps, moddeling rare but impactful events.$$
- -->
+
+$a t$ is the drift caused by working on myself.
+$\sigma B_t$ is the noise caused by factors outside of my control.
+$\sum_{i=1}^{N_t} Y_i$ compound Poisson jumps, moddeling rare but impactful events.
+
 
 Of course, I my efforts are not fully deterministic and we could add a lot more coefficients (volatility, frequency of success-influencing events etc). However, this is a model that is useful to me - which is what modelling is all about: usefulness. It keeps me motivated and abstracts the success from the effort, making me optimise for my drift coefficient, rather than an outcome outside my control. Which is probabily the most techical description of a growth-mindset I could have given.
 
