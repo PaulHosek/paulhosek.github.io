@@ -259,7 +259,7 @@ Let’s use an example:
 | --- | --- |
 | Decimal (0-9) | Binary (0,1) |
 | 0 + 0 = 0 | 0 + 0 = 0 |
-| 0 + 1 = 1 | 0 +   = 1 |
+| 0 + 1 = 1 | 0 + 1 = 1 |
 | 1 + 0 = 1 | 1 + 0 = 1 |
 | 1 + 1 = 2 | 1 + 1  = 10 |
 
@@ -270,7 +270,7 @@ Let’s think about how to calculate the right spot first using a familiar tool:
 | | | | | |
 | --- | --- | --- | --- | --- |
 | Input 1 | 1 | 0 | 0 | 1 |
-| t 2 | 0 | 1 | 0 | 1 |
+| Input 2 | 0 | 1 | 0 | 1 |
 | Right-hand number output (SUM) | 1 (1+0) | 1 (0+1) | 0 (0+0) | 0 (1+1= 10) |
 | Left-hand number output (CARRY) | 0 | 0 | 0 | 1 |
 
@@ -485,7 +485,7 @@ This is the simplest 1-bit decoder that I can think of. It demonstrates nicely w
 | 3 | 1 | 0 | 0 | 1 | 0 | 0 |
 | 4 | 1 | 1 | 1 | 0 | 0 | 0 |
 
-From the above 1-bit decoder, I can see a combinatorial problem here. We will need an inverted and non-inverted wire for each input. This gives us 4 wires. We then need to combine each pair of two in some way and pass that to the respective output. Here the idea I am having:
+From the above 1-bit decoder, I can see a combinatorial problem here. We will need an inverted and non-inverted wire for each input. This gives us 4 wires. We then need to combine each pair of two in some way and pass that to the respective output.
 
 <p align="center"> {% asset_image image_38.png %}
 
