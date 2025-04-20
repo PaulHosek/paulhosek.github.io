@@ -797,7 +797,7 @@ We know two things will be needed to implement this: First, a block that decides
 Seeing we are currently working on the program counter anyway, let’s avoid shifting focus and start with the second problem. For this we can try to add a second control path to our counter. 
 For example, to set a flip-flop to 1, feed `J = 1` and `K = 0` when Load is active. Similarly, to set it to 0, feed `J = 0` and `K = 1`. Since we will be sharing the inputs, we need to make sure to not short circuit the whole thing. I have created a two bit version of the design we would need below.
 
-<p align="center"> {% asset_image image_77.png %}
+<p align="center"> {% asset_image fixed_PC_v1_2.png %}
 
 But since I am the one writing this text, I can do whatever I want - and I want something a bit simpler. Let’s take a step back and evaluate what we need. 
 
